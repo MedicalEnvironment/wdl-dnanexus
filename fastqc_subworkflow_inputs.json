@@ -1,8 +1,0 @@
-{
-  "fastqc_subworkflow.outputDir": "output_directory", 
-  "fastqc_subworkflow.fastqFiles": [
-    "file-GgBy43046zGk6GgkkkbVxyyF",  
-    "file-GgBy9J046zGbfVB11yYfgBJJ",
-    "file-GgByfpj46zGb01XYYvP7JBjF"
-  ]
-}
