@@ -1,3 +1,4 @@
+![alt text](https://d7umqicpi7263.cloudfront.net/img/product/a331c11d-fdc7-457e-adae-6b107a3cbe52.png)
 # FastQC Subworkflow on DNAnexus
 
 This guide provides instructions on compiling a WDL workflow using `dxCompiler`, deploying it on DNAnexus, and retrieving output. This example uses a FastQC subworkflow.
