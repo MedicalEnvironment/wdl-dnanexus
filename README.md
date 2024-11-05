@@ -10,7 +10,7 @@
 
 This guide provides step-by-step instructions on compiling a WDL workflow using `dxCompiler` for the DNAnexus platform. We'll demonstrate this process with a FastQC subworkflow. 
 
-**Please note that the files in this directory were developed specifically for FastQC sequence analyses!.**
+**Please note that the files in this directory were developed specifically for FastQC sequence analyses!**
 
 **Prerequisites**
 
@@ -22,6 +22,17 @@ This guide provides step-by-step instructions on compiling a WDL workflow using 
 **Important Note!**
 
 `dxCompiler` is only compatible with Java 8 and 11.
+
+## Directory Structure
+
+This project directory should contain the following files:
+
+1. **Dockerfile** - Specifies the Docker image configuration required to pull and run FastQC within the workflow, including the necessary WDL files and input directories for DNAnexus compatibility.
+
+2. **fastqc_subworkflow.wdl** - The WDL (Workflow Description Language) script for running the FastQC subworkflow. This script defines the tasks, inputs, outputs, and structure needed to execute FastQC on multiple files in parallel.
+
+3. **dxCompiler-2.11.7.jar** - The DNAnexus dxCompiler tool, used to compile WDL workflows into a format compatible with the DNAnexus platform. Ensure this version (or later) is available in the project directory.
+
 
 **Installing DX Toolkit**
 
