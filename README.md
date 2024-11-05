@@ -1,10 +1,10 @@
 <img src="https://d7umqicpi7263.cloudfront.net/img/product/a331c11d-fdc7-457e-adae-6b107a3cbe52.png" alt="DNAnexus Platform Image" width="300">
 
-<img src="https://vsmalladi.github.io/openwdl.github.io//media/logo-preview.png" alt="OpenWDL Logo" width="150">
+<img src="https://vsmalladi.github.io/openwdl.github.io//media/logo-preview.png" alt="OpenWDL Logo" width="250">
 
-<img src="https://cltchighereducation.com/wp-content/uploads/2021/06/download-4.jpeg" alt="Download Icon" width="100">
+<img src="https://cltchighereducation.com/wp-content/uploads/2021/06/download-4.jpeg" alt="Download Icon" width="200">
 
-##Compiling the WDL Workflow with `dxCompiler`##
+## Compiling the WDL Workflow with `dxCompiler`
 
 **Introduction**
 
