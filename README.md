@@ -83,14 +83,19 @@ By following these steps and leveraging the power of `dxCompiler`, you can effic
 
 **Troubleshooting**
 - **Compilation Errors:**
+
   - **Syntax Errors:** Double-check your WDL syntax for errors like missing semicolons, incorrect indentation, or typos.
   - **Missing Dependencies:** Ensure that all necessary tools and libraries, including Docker images, are properly defined and accessible.
   - **Permission Issues:** Verify that you have the necessary permissions to create and modify files and directories in your DNAnexus project.
+
 - **Workflow Execution Errors:**
+  
   - **Input File Issues:** Ensure that your input files are correctly formatted and uploaded to DNAnexus.
   - **Task Failures:** Check the logs of failed tasks to identify specific error messages.
   - **Resource Constraints:** If your workflow requires significant computational resources, consider adjusting the resource allocations.
+
 - **DNAnexus Platform Issues:**
+
   - **Network Connectivity:** Verify your internet connection and ensure that you can access the DNAnexus platform.
   - **API Token:** Double-check that your API token is valid and configured correctly.
   - **Project Permissions:** Ensure that you have the necessary permissions to run workflows and access results in your DNAnexus project.
