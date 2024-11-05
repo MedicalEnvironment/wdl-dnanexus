@@ -4,7 +4,7 @@
 
 <img src="https://cltchighereducation.com/wp-content/uploads/2021/06/download-4.jpeg" alt="Download Icon" width="100">
 
-##Compiling the WDL Workflow with `dxCompiler`
+##Compiling the WDL Workflow with `dxCompiler`##
 
 **Introduction**
 
