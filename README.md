@@ -58,7 +58,7 @@ To compile your WDL workflow using `dxCompiler` and deploy it to DNAnexus, follo
    ```bash
    java -jar dxCompiler-2.11.7.jar compile fastqc_subworkflow.wdl \
        --project project-<project_id> \
-       --folder "<directory_name>"
+       --folder "<folder_name>"
    ```
 
    **Explanation of the command:**
