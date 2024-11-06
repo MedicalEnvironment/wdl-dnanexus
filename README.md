@@ -66,7 +66,7 @@ To compile your WDL workflow using `dxCompiler` and deploy it to DNAnexus, follo
    - `java -jar dxCompiler-2.11.7.jar`: This part invokes the `dxCompiler` tool.
    - `compile fastqc_subworkflow.wdl`: This specifies the WDL file to be compiled.
    - `--project project-<project_id>`: This argument indicates the DNAnexus project ID where the compiled workflow will be stored. Replace `<project_id>` with your actual project ID.
-   - `--folder "<directory_name>"`: This argument specifies the folder within your DNAnexus project where the compiled workflow will be placed. Replace `<directory_name>` with the desired folder name.
+   - `--folder "<folder_name>"`: This argument specifies the folder within your DNAnexus project where the compiled workflow will be placed. Replace `<directory_name>` with the desired folder name.
 
 3. **Check Workflow Progress on the DNAnexus Platform**
 
