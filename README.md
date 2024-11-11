@@ -79,7 +79,7 @@ To compile your WDL workflow using `dxCompiler` and deploy it to DNAnexus, follo
 
 By following these steps and leveraging the power of `dxCompiler`, you can efficiently compile and deploy your WDL workflows on the DNAnexus platform.
 
-**Setting input files and output directory using the GUI**
+## Setting input files and output directory using the GUI
 This section demonstrates how to configure the input files and specify the output directory using the DNAnexus GUI. Follow these steps:
 
 1. **Input Configuration**:
