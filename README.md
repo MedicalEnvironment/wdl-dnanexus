@@ -23,6 +23,35 @@ This guide provides step-by-step instructions on compiling a WDL workflow using 
 
 `dxCompiler` is only compatible with Java 8 and 11.
 
+### Example Setup with Specific Docker Image and Input Files
+
+This section ensures users have a clear starting point for their workflow starting by reviewing the Docker Image file.
+
+1. **Docker Image**:
+   - For this example, we’ll use the `biocontainers/fastqc:v0.11.9_cv8` image, which includes FastQC.
+   - The Dockerfile setup for this image is as follows:
+     ```Dockerfile
+     # Start with the FastQC image
+     FROM biocontainers/fastqc:v0.11.9_cv8
+     
+     # Set the working directory
+     WORKDIR /wdl-dnanexus
+
+     # Copy the WDL workflow file
+     COPY fastqc_subworkflow.wdl /wdl-dnanexus/
+
+     CMD ["/bin/bash"]
+     ```
+
+2. **Example Input Files**:
+   - `fastqFiles`: Include example FASTQ files such as `sample1.fastq` and `sample2.fastq`.
+   - `overrides_dxfiles`: Provide an example override file, e.g., `config_override.json`, to customize workflow parameters.
+
+3. **Workflow Execution**:
+   - Ensure that the input files are uploaded to DNAnexus and are accessible in your project.
+   - Follow the steps in the **Input Configuration** section to select these files when running the workflow.
+
+
 ## Directory Structure
 
 This project directory should contain the following files:
