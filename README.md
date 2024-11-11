@@ -87,7 +87,7 @@ This section demonstrates how to configure the input files and specify the outpu
      
      ![Inputs Tab](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
    
-   - For `fastqFiles`, select the FASTQ files by clicking the **Select Files** button (as shown in the above image).
+   - For `fastqFiles`, select the FASTQ files by clicking the **Select Files (array)** button (as shown in the above image).
    - If you have specific override files for configuration (`overrides_dxfiles`), select them similarly.
 
 2. **Output Configuration**:
