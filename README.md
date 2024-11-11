@@ -79,6 +79,20 @@ To compile your WDL workflow using `dxCompiler` and deploy it to DNAnexus, follo
 
 By following these steps and leveraging the power of `dxCompiler`, you can efficiently compile and deploy your WDL workflows on the DNAnexus platform.
 
+**Setting input files and output directory using the GUI**
+This section demonstrates how to configure the input files and specify the output directory using the DNAnexus GUI. Follow these steps:
+
+1. **Input Configuration**:
+   - Navigate to the **Inputs** tab.
+     ![image](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
+   - For `fastqFiles`, select the FASTQ files by clicking the **Select Files** button (as shown in the above image).
+   - If you have specific override files for configuration (`overrides_dxfiles`), select them similarly.
+
+2. **Output Configuration**:
+   - Switch to the **Outputs** tab to set the output directory.
+     ![image](https://github.com/user-attachments/assets/cf0aa98d-ac47-4908-8fb2-90edd7b3f0e7)
+   - Ensure the **Output Folder** is set to the desired location, e.g., `Examples / Workflows / WDL / FastQC` (as shown in the second image).
+   - The resulting output files (`outputFiles1` and `outputFiles2`) will be stored in this folder.
 
 
 **Troubleshooting**
