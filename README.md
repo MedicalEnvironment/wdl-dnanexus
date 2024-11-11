@@ -97,6 +97,16 @@ This section demonstrates how to configure the input files and specify the outpu
    
    - Ensure the **Output Folder** is set to the desired location, e.g., `Examples / Workflows / WDL / FastQC` (as shown in the second image).
    - The resulting output files (`outputFiles1` and `outputFiles2`) will be stored in this folder.
+  
+3. **Running the Workflow and Receiving Results**
+
+   - Once the inputs and outputs are configured, click the **Run** button to start the workflow.
+     
+     ![image](https://github.com/user-attachments/assets/e79b8e31-3ed9-41a9-b586-8773c5069144)
+
+   - DNAnexus will automatically handle the workflow execution and notify you via email once the job is complete.
+   - The email will include a summary of the run and a link to access the results directly on the platform.
+
 
 
 **Troubleshooting**
