@@ -116,7 +116,7 @@ After compilation, the workflow is transferred to DNAnexus but not executed. To 
 **Input Configuration**:  
 Use the DNAnexus GUI to set up the inputs:  
 1. Open the compiled workflow.
-   **The compiled workflow will have a class named "Workflow"**
+   - **The compiled workflow will have a class named "Workflow"**
 
    ![Inputs Tab](https://github.com/user-attachments/assets/68076222-8762-4c8a-97cd-85df7c20d588)
 
