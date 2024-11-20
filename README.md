@@ -115,12 +115,17 @@ After compilation, the workflow is transferred to DNAnexus but not executed. To 
 
 **Input Configuration**:  
 Use the DNAnexus GUI to set up the inputs:  
-1. Open the compiled workflow.  
-2. Navigate to the **Inputs** tab. Refer to the screenshot below:
+1. Open the compiled workflow.
+
+   ![Inputs Tab](https://github.com/user-attachments/assets/68076222-8762-4c8a-97cd-85df7c20d588)
+
+   ![Inputs Tab](https://github.com/user-attachments/assets/a0fcf977-8c5b-4c9f-85fc-3387c45ad89f)
+
+3. Navigate to the **Inputs** tab. Refer to the screenshot below:
 
    ![Inputs Tab](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
 
-3. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` from your project.  
+4. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` from your project.  
 
 **Output Configuration**:  
 1. Switch to the **Outputs** tab.  
