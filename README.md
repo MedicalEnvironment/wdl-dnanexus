@@ -70,7 +70,7 @@ This project directory should contain the following files:
 3. **Configuration:** Detailed tutorial you can find by accessing this link [Command Line Guide](https://documentation.dnanexus.com/getting-started/cli-quickstart)
    ```bash
    dx login  # Login to DNAnexus before using this command
-   dx projects list
+   dx find projects # To list available projects
    ```
 
 **Compiling and Deploying the Workflow**
