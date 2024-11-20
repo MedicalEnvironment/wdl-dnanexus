@@ -1,161 +1,152 @@
-<p align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRebnHAXPaao5YNF58wnzLnc2jhY9YqsDLNx62BSnbj8JeZVwMiUG_DFU_v4SMcveoGxQ&usqp=CAU" alt="DNAnexus Platform Image" width="400" style="margin-right: 10px;">
-  <img src="https://vsmalladi.github.io/openwdl.github.io//media/logo-preview.png" alt="OpenWDL Logo" width="300" style="margin-right: 10px;">
-</p>
-
-
 ## Compiling the WDL Workflow with `dxCompiler`
 
-**Introduction**
+**Introduction**  
+This guide provides a complete, step-by-step walkthrough for compiling a WDL workflow using `dxCompiler` on the DNAnexus platform. We'll use a FastQC subworkflow as an example and ensure all steps are clearly explained with specific examples and screenshots to leave no room for ambiguity.
 
-This guide provides step-by-step instructions on compiling a WDL workflow using `dxCompiler` for the DNAnexus platform. We'll demonstrate this process with a FastQC subworkflow. 
+---
 
-**Please note that the files in this directory were developed specifically for FastQC sequence analyses!**
+### **1. Purpose of the Dockerfile**
 
-**Prerequisites**
+**What is the purpose of the Dockerfile?**  
+The Dockerfile ensures that all necessary dependencies (e.g., FastQC and its required environment) are packaged into a portable, reproducible container. This container guarantees the workflow behaves consistently across different systems.
 
-* **DNAnexus Account:** Ensure you have a DNAnexus account.
-* **DX Toolkit:** Install the DNAnexus Toolkit (`dx-toolkit`) to interact with the DNAnexus platform: [Installation guide](https://documentation.dnanexus.com/downloads)
-* **Java:** You'll need Java JDK to run `dxCompiler`. Download it from the official website: [Installation page](https://github.com/dnanexus/dxCompiler/releases)
-* **dxCompiler**: Download the latest version of `dxCompiler` (e.g., `dxCompiler-2.11.7.jar`) from the official releases page:  [Installation page](https://github.com/dnanexus/dxCompiler/releases)
+**Why are we using it?**  
+By specifying a Docker image in your workflow, you ensure compatibility with the DNAnexus platform. In this case, the `biocontainers/fastqc:v0.11.9_cv8` Docker image includes all tools required to run the FastQC subworkflow.
 
-**Important Note!**
+**Dockerfile Example:**
+```Dockerfile
+# Start with the FastQC image
+FROM biocontainers/fastqc:v0.11.9_cv8
 
-`dxCompiler` is only compatible with Java 8 and 11.
+# Set the working directory
+WORKDIR /wdl-dnanexus
 
-### Example Setup with Specific Docker Image and Input Files
+# Copy the WDL workflow file
+COPY fastqc_subworkflow.wdl /wdl-dnanexus/
 
-This section ensures users have a clear starting point for their workflow starting by reviewing the Docker Image file.
+CMD ["/bin/bash"]
+```
 
-1. **Docker Image**:
-   - For this example, we’ll use the `biocontainers/fastqc:v0.11.9_cv8` image, which includes FastQC.
-   - The Dockerfile setup for this image is as follows:
-     ```Dockerfile
-     # Start with the FastQC image
-     FROM biocontainers/fastqc:v0.11.9_cv8
-     
-     # Set the working directory
-     WORKDIR /wdl-dnanexus
+This Dockerfile:  
+1. Pulls the pre-built `biocontainers/fastqc` image.  
+2. Sets a working directory (`/wdl-dnanexus`).  
+3. Copies the WDL workflow (`fastqc_subworkflow.wdl`) into the container.  
 
-     # Copy the WDL workflow file
-     COPY fastqc_subworkflow.wdl /wdl-dnanexus/
+---
 
-     CMD ["/bin/bash"]
-     ```
+### **2. Setup with Specific Examples**
 
-2. **Example Input Files**:
-   - `fastqFiles`: Include example FASTQ files such as `sample1.fastq` and `sample2.fastq`.
-   - `overrides_dxfiles`: Provide an example override file, e.g., `config_override.json`, to customize workflow parameters.
+**Input Files**:  
+Let’s assume your input directory contains two FASTQ files for analysis:  
+- `sample1.fastq`  
+- `sample2.fastq`
 
-3. **Workflow Execution**:
-   - Ensure that the input files are uploaded to DNAnexus and are accessible in your project.
-   - Follow the steps in the **Input Configuration** section to select these files when running the workflow.
+**Output Directory**:  
+The results will be stored in the DNAnexus folder `/FastQC_Results`.
 
+**How to upload input files**:  
+1. Log in to the DNAnexus GUI.  
+2. Navigate to your project.  
+3. Drag and drop the files into the `Input_Files` folder (or use the CLI: `dx upload sample1.fastq sample2.fastq --folder /Input_Files`).  
 
-## Directory Structure
+---
 
-This project directory should contain the following files:
+### **3. Installing the DX Toolkit**
 
-1. **Dockerfile** - Specifies the Docker image configuration required to pull and run FastQC within the workflow, including the necessary WDL files and input directories for DNAnexus compatibility.
+To compile WDL workflows, you need the DNAnexus CLI tools (`dx toolkit`).
 
-2. **fastqc_subworkflow.wdl** - The WDL (Workflow Description Language) script for running the FastQC subworkflow. This script defines the tasks, inputs, outputs, and structure needed to execute FastQC on multiple files in parallel.
-
-3. **dxCompiler-2.11.7.jar** - The DNAnexus dxCompiler tool, used to compile WDL workflows into a format compatible with the DNAnexus platform. Ensure this version (or later) is available in the project directory.
-
-
-**Installing DX Toolkit**
-
-1. **Download:** Download the appropriate DX Toolkit installer for your operating system from the DNAnexus website: [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads)
-2. **Installation:** Follow the installation instructions provided for your specific operating system. This usually involves running the installer and following the on-screen prompts.
-3. **Configuration:** Detailed tutorial you can find by accessing this link [Command Line Guide](https://documentation.dnanexus.com/getting-started/cli-quickstart)
+**Steps:**  
+1. **Download**: Download the toolkit for your OS: [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads).  
+2. **Install**: Follow your system's installation instructions.  
+   Example for Linux:
    ```bash
-   dx login  # Login to DNAnexus before using this command
-   dx find projects # To list available projects
+   curl -O https://dnanexus.com/downloads/dx-toolkit.tar.gz
+   tar -xvzf dx-toolkit.tar.gz
+   cd dx-toolkit
+   sudo ./install
+   ```
+3. **Login**: After installation, log in with your DNAnexus account:  
+   ```bash
+   dx login
+   ```
+4. **Find Project ID**: List your DNAnexus projects:  
+   ```bash
+   dx find projects
+   ```
+   Example output:  
+   ```
+   ID              NAME
+   project-12345   FastQC_Project
    ```
 
-**Compiling and Deploying the Workflow**
+---
 
-To compile your WDL workflow using `dxCompiler` and deploy it to DNAnexus, follow these steps:
+### **4. Compiling and Deploying the Workflow**
 
-1. **Prepare Your WDL File:**
-   - Ensure you have the `fastqc_subworkflow.wdl` file containing your workflow definition.
+**Command Example:**  
+Run the `dxCompiler` command from your local machine or HPC terminal where `dxCompiler` is installed.
 
-2. **Run the `dxCompiler` Command:**
+```bash
+java -jar dxCompiler-2.11.7.jar compile fastqc_subworkflow.wdl \
+    --project project-12345 \
+    --folder "/WDL_Compiled_Workflows"
+```
 
-   Execute the following command in your terminal:
+**Explanation of Flags:**
+- `--project project-12345`: The DNAnexus project where the compiled workflow will be saved.  
+- `--folder "/WDL_Compiled_Workflows"`: The folder path for storing the compiled workflow. Ensure it starts with `/`.  
 
-   ```bash
-   java -jar dxCompiler-2.11.7.jar compile fastqc_subworkflow.wdl \
-       --project project-<project_id> \
-       --folder "<folder_name>"
-   ```
+**Common Error:**  
+If you see `[error] Folder path must start with "/"`, check the folder argument. For example, use `"/WDL_Compiled_Workflows"` instead of `"WDL_Compiled_Workflows"`.
 
-   **Explanation of the command:**
+---
 
-   - `java -jar dxCompiler-2.11.7.jar`: This part invokes the `dxCompiler` tool.
-   - `compile fastqc_subworkflow.wdl`: This specifies the WDL file to be compiled.
-   - `--project project-<project_id>`: This argument indicates the DNAnexus project ID where the compiled workflow will be stored. Replace `<project_id>` with your actual project ID.
-   - `--folder "<folder_name>"`: This argument specifies the folder within your DNAnexus project where the compiled workflow will be placed. Replace `<directory_name>` with the desired folder name.
+### **5. Checking Workflow Progress on DNAnexus**
 
-3. **Check Workflow Progress on the DNAnexus Platform**
+After compilation, the workflow is transferred to DNAnexus but not executed. To execute it:  
+1. Log in to the DNAnexus GUI.  
+2. Navigate to the **Workflows** section.  
+3. Locate the `fastqc_subworkflow` in the specified folder (`/WDL_Compiled_Workflows`).  
+4. Run the workflow by configuring inputs and outputs (details in the next section).  
 
-   Once the compilation is complete, you can monitor the workflow's progress directly on the DNAnexus platform. Here's how:
+---
 
-   1. **Log in to DNAnexus:** Access the DNAnexus website and log in to your account.
-   2. **Navigate to Your Project:** Go to the project where you compiled the workflow.
-   3. **Locate the Workflow:** Look for the newly created workflow in the project's file explorer.
-   4. **Monitor Execution:** Click on the workflow to view its status, logs, and output files.
+### **6. Setting Input Files and Output Directory**
 
-By following these steps and leveraging the power of `dxCompiler`, you can efficiently compile and deploy your WDL workflows on the DNAnexus platform.
+**Input Configuration**:  
+Use the DNAnexus GUI to set up the inputs:  
+1. Open the compiled workflow.  
+2. Navigate to the **Inputs** tab. Refer to the screenshot below:
 
-## Setting input files and output directory using the GUI
-This section demonstrates how to configure the input files and specify the output directory using the DNAnexus GUI. Follow these steps:
+   ![Inputs Tab](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
 
-1. **Input Configuration**:
-   - Navigate to the **Inputs** tab.
-     
-     ![Inputs Tab](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
-   
-   - For `fastqFiles`, select the FASTQ files by clicking the **Select Files (array)** button (as shown in the above image).
-   - If you have specific override files for configuration (`overrides_dxfiles`), select them similarly.
+3. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` from your project.  
 
-2. **Output Configuration**:
-   - Switch to the **Outputs** tab to set the output directory.
-     
-     ![Outputs Tab](https://github.com/user-attachments/assets/cf0aa98d-ac47-4908-8fb2-90edd7b3f0e7)
-   
-   - Ensure the **Output Folder** is set to the desired location, e.g., `Examples / Workflows / WDL / FastQC` (as shown in the second image).
-   - The resulting output files (`outputFiles1` and `outputFiles2`) will be stored in this folder.
-  
-3. **Running the Workflow and Receiving Results**
+**Output Configuration**:  
+1. Switch to the **Outputs** tab.  
 
-   - Once the inputs and outputs are configured, click the **Run** button to start the workflow.
-     
-     ![image](https://github.com/user-attachments/assets/e79b8e31-3ed9-41a9-b586-8773c5069144)
+   ![Outputs Tab](https://github.com/user-attachments/assets/cf0aa98d-ac47-4908-8fb2-90edd7b3f0e7)
 
-   - DNAnexus will automatically handle the workflow execution and notify you via email once the job is complete.
-   - The email will include a summary of the run and a link to access the results directly on the platform.
+2. Set the **Output Folder** to `/FastQC_Results`.  
 
+---
 
+### **7. Running the Workflow**
 
-**Troubleshooting**
-- **Compilation Errors:**
+Click the **Run** button. The workflow will execute on DNAnexus, and you’ll receive a notification upon completion. Use the screenshots for guidance during this step:
 
-  - **Syntax Errors:** Double-check your WDL syntax for errors like missing semicolons, incorrect indentation, or typos.
-  - **Missing Dependencies:** Ensure that all necessary tools and libraries, including Docker images, are properly defined and accessible.
-  - **Permission Issues:** Verify that you have the necessary permissions to create and modify files and directories in your DNAnexus project.
+   ![Run Workflow](https://github.com/user-attachments/assets/e79b8e31-3ed9-41a9-b586-8773c5069144)
 
-- **Workflow Execution Errors:**
-  
-  - **Input File Issues:** Ensure that your input files are correctly formatted and uploaded to DNAnexus.
-  - **Task Failures:** Check the logs of failed tasks to identify specific error messages.
-  - **Resource Constraints:** If your workflow requires significant computational resources, consider adjusting the resource allocations.
+---
 
-- **DNAnexus Platform Issues:**
+### **8. Troubleshooting**
 
-  - **Network Connectivity:** Verify your internet connection and ensure that you can access the DNAnexus platform.
-  - **API Token:** Double-check that your API token is valid and configured correctly.
-  - **Project Permissions:** Ensure that you have the necessary permissions to run workflows and access results in your DNAnexus project.
+**Compilation Errors**:  
+- **Syntax Errors**: Check your WDL file for syntax issues.  
+- **Missing Files**: Ensure input files are uploaded and paths are correct.  
 
+**Execution Errors**:  
+- Check the logs of failed tasks directly in DNAnexus.  
 
-By following these instructions and leveraging the power of the DX Toolkit, you can efficiently compile, deploy, and manage your WDL workflows on the DNAnexus platform.
+**General Tips**:  
+- Always test workflows locally or in a sandbox project before deploying.  
