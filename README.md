@@ -141,7 +141,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 ### **6. Monitoring Workflow Progress on DNAnexus**
 
-1. Go to the **Monitor** section within the DNAnexus interface (As you may have already noticed, the number "1" has popped up, indicating that the workflow has been started.).
+1. Go to the **Monitor** section within the DNAnexus interface (**As you may have already noticed, the number "1" has popped up, indicating that the workflow has been started**).
 
    ![image](https://github.com/user-attachments/assets/9bbb17c0-4731-4ec3-a836-fc938cb1b466)
 
