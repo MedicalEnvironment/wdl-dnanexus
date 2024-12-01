@@ -124,7 +124,7 @@ Use the DNAnexus GUI to set up the inputs:
 
    ![Inputs Tab](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
 
-3. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` from your project.  
+3. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` or any other directory with the required data from your project.  
 
 **Output Configuration**:  
 1. Switch to the **Outputs** tab.  
