@@ -107,17 +107,7 @@ If you see `[error] Folder path must start with "/"`, check the folder argument.
 
 ---
 
-### **5. Checking Workflow Progress on DNAnexus**
-
-After compilation, the workflow is transferred to DNAnexus but not executed. To execute it:  
-1. Log in to the DNAnexus GUI.  
-2. Navigate to the **Workflows** section.  
-3. Locate the `fastqc_subworkflow` in the specified folder (`/WDL_Compiled_Workflows`).  
-4. Run the workflow by configuring inputs and outputs (details in the next section).  
-
----
-
-### **6. Setting Input Files and Output Directory**
+### **5. Setting Input Files and Output Directory**
 
 **Input Configuration**:  
 Use the DNAnexus GUI to set up the inputs:  
@@ -128,11 +118,11 @@ Use the DNAnexus GUI to set up the inputs:
 
    ![Inputs Tab](https://github.com/user-attachments/assets/a0fcf977-8c5b-4c9f-85fc-3387c45ad89f)
 
-3. Navigate to the **Inputs** tab. Refer to the screenshot below:
+2. Navigate to the **Inputs** tab. Refer to the screenshot below:
 
    ![Inputs Tab](https://github.com/user-attachments/assets/fdece1ba-985b-4bf5-b678-4442357f03f3)
 
-4. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` from your project.  
+3. Select `fastqFiles` by clicking **Select Files (array)** and choose `sample1.fastq` and `sample2.fastq` from your project.  
 
 **Output Configuration**:  
 1. Switch to the **Outputs** tab.  
@@ -143,11 +133,24 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **7. Running the Workflow**
+### **6. Running the Workflow**
 
 Click the **Run** button. The workflow will execute on DNAnexus, and you’ll receive a notification upon completion. Use the screenshots for guidance during this step:
 
    ![Run Workflow](https://github.com/user-attachments/assets/e79b8e31-3ed9-41a9-b586-8773c5069144)
+
+---
+
+### **7. Checking Workflow Progress on DNAnexus**
+ 
+1. Navigate to the **Monitor** section.
+
+   ![image](https://github.com/user-attachments/assets/9a3325eb-4c2b-425d-be9f-d314e73ef918)
+
+   
+2. Click on the name of your current process which is in our case `fastqc_subworkflow`:
+
+   ![image](https://github.com/user-attachments/assets/5e64ded2-5ab8-4042-9117-cfa6b32984c8)  
 
 ---
 
