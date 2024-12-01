@@ -80,7 +80,7 @@ To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a sp
 
 ---
 
-### **4. Installing the DX Toolkit**
+### **Installing the DX **
 
 Now that you have Java installed (version 8 or 11), you can proceed with installing the DNAnexus CLI tools, which include `dxCompiler`.
 
@@ -89,20 +89,9 @@ Now that you have Java installed (version 8 or 11), you can proceed with install
    [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads)
 
 2. **Install the DX Toolkit**:
-   - **For Linux**:
+   - **For Unix Like**:
      ```bash
-     curl -O https://dnanexus.com/downloads/dx-toolkit.tar.gz
-     tar -xvzf dx-toolkit.tar.gz
-     cd dx-toolkit
-     sudo ./install
-     ```
-
-   - **For macOS**:
-     ```bash
-     curl -O https://dnanexus.com/downloads/dx-toolkit.tar.gz
-     tar -xvzf dx-toolkit.tar.gz
-     cd dx-toolkit
-     ./install
+     pip3 install dxpy
      ```
 
    - **For Windows**:
@@ -119,6 +108,15 @@ Now that you have Java installed (version 8 or 11), you can proceed with install
    ```bash
    dx --version
    ```
+
+### **Installing the dxCompiler**
+To download the latest version, visit the following link: https://github.com/dnanexus/dxCompiler/releases
+
+To install dxCompiler via the CLI, run the following commands:
+```bash
+wget https://github.com/dnanexus/dxCompiler/releases/download/2.11.9/dxCompiler-2.11.9.jar
+cd /where/you/want/it; jar xf /path/to/jarfile.jar
+```
 
 ---
 
