@@ -129,32 +129,31 @@ Use the DNAnexus GUI to set up the inputs:
 
    ![Outputs Tab](https://github.com/user-attachments/assets/cf0aa98d-ac47-4908-8fb2-90edd7b3f0e7)
 
-2. Set the **Output Folder** to `/FastQC_Results`.  
+2. Set the **Output Folder** to `/FastQC_Results`.
 
----
-
-### **6. Running the Workflow**
-
-Click the **Run** button. The workflow will execute on DNAnexus, and you’ll receive a notification upon completion. Use the screenshots for guidance during this step:
+3. Click the **Run** button. The workflow will execute on DNAnexus, and you’ll receive a notification upon completion. Use the screenshots for guidance during this step:
 
    ![Run Workflow](https://github.com/user-attachments/assets/e79b8e31-3ed9-41a9-b586-8773c5069144)
 
 ---
 
-### **7. Checking Workflow Progress on DNAnexus**
- 
-1. Navigate to the **Monitor** section.
+### **6. Monitoring Workflow Progress on DNAnexus**
+
+1. Go to the **Monitor** section within the DNAnexus interface.
 
    ![image](https://github.com/user-attachments/assets/9a3325eb-4c2b-425d-be9f-d314e73ef918)
 
-   
-2. Click on the name of your current process which is in our case `fastqc_subworkflow`:
+2. Select the name of your current workflow process. In this example, it is `fastqc_subworkflow`.
 
-   ![image](https://github.com/user-attachments/assets/5e64ded2-5ab8-4042-9117-cfa6b32984c8)  
+   ![image](https://github.com/user-attachments/assets/5a976549-127d-4708-82ab-00687396202a)
+
+3. On the detailed process page, you can view real-time logs and periodic updates, such as the date and time of the process execution.
+
+   ![image](https://github.com/user-attachments/assets/3a0aa101-1f8e-4c97-a643-098769c29ce4)
 
 ---
 
-### **8. Troubleshooting**
+### **7. Troubleshooting**
 
 **Compilation Errors**:  
 - **Syntax Errors**: Check your WDL file for syntax issues.  
