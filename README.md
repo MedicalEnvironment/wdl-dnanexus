@@ -141,9 +141,9 @@ Use the DNAnexus GUI to set up the inputs:
 
 ### **6. Monitoring Workflow Progress on DNAnexus**
 
-1. Go to the **Monitor** section within the DNAnexus interface.
+1. Go to the **Monitor** section within the DNAnexus interface (As you may have already noticed, the number "1" has popped up, indicating that the workflow has been started.).
 
-   ![image](https://github.com/user-attachments/assets/9a3325eb-4c2b-425d-be9f-d314e73ef918)
+   ![image](https://github.com/user-attachments/assets/9bbb17c0-4731-4ec3-a836-fc938cb1b466)
 
 2. Select the name of your current workflow process. In this example, it is `fastqc_subworkflow`.
 
