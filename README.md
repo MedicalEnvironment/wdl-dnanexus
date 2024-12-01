@@ -116,6 +116,8 @@ Use the DNAnexus GUI to set up the inputs:
 
    ![Inputs Tab](https://github.com/user-attachments/assets/68076222-8762-4c8a-97cd-85df7c20d588)
 
+   - **Click "Next"**
+
    ![Inputs Tab](https://github.com/user-attachments/assets/a0fcf977-8c5b-4c9f-85fc-3387c45ad89f)
 
 2. Navigate to the **Inputs** tab. Refer to the screenshot below:
@@ -131,7 +133,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 2. Set the **Output Folder** to `/FastQC_Results`.
 
-3. Click the **Run** button. The workflow will execute on DNAnexus, and you’ll receive a notification upon completion. Use the screenshots for guidance during this step:
+3. Click the **Run** button. The workflow will execute on DNAnexus, and you’ll receive a notification upon completion:
 
    ![Run Workflow](https://github.com/user-attachments/assets/e79b8e31-3ed9-41a9-b586-8773c5069144)
 
