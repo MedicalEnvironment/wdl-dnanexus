@@ -3,6 +3,131 @@
   <img src="https://vsmalladi.github.io/openwdl.github.io//media/logo-preview.png" alt="OpenWDL Logo" width="300" style="margin-right: 10px;">
 </p>
 
+### **Installing the DX Toolkit and Java (Required for dxCompiler)**
+
+To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a specific version of Java (either version 8 or version 11). These Java versions are required as they are the only ones supported for running `dxCompiler`.
+
+#### **Steps for Installing Java Version 8 or 11:**
+
+**Option 1: Install Java 8 (Recommended)**
+1. **Download Java 8**:  
+   Download the Java 8 JDK from the official Oracle website or use an OpenJDK version.  
+   [Oracle JDK 8 download](https://www.oracle.com/java/technologies/downloads/#java8) 
+
+2. **Install Java 8**:  
+   Follow the installation instructions specific to your operating system:
+   
+   **For Linux (Ubuntu/Debian)**:
+   ```bash
+   sudo apt update
+   sudo apt install openjdk-8-jdk
+   ```
+
+   **For Windows**:
+   Run the installer and follow the steps, ensuring that the JDK is added to the `PATH` environment variable during installation.
+
+   **For macOS**:
+   You can install Java 8 via Homebrew:
+   ```bash
+   brew install --cask adoptopenjdk8
+   ```
+
+3. **Verify Installation**:  
+   After installation, verify that Java 8 is installed correctly by running:
+   ```bash
+   java -version
+   ```
+   You should see an output like:
+   ```
+   openjdk version "1.8.0_xx"
+   ```
+
+---
+
+**Option 2: Install Java 11** (if Java 8 is unavailable)
+
+1. **Download Java 11**:  
+   Java 11 can be downloaded from the official Oracle website or use an OpenJDK version.  
+   [Oracle JDK 11 download](https://www.oracle.com/java/technologies/downloads/#java11)  
+
+2. **Install Java 11**:  
+   Follow the installation instructions specific to your operating system:
+
+   **For Linux (Ubuntu/Debian)**:
+   ```bash
+   sudo apt update
+   sudo apt install openjdk-11-jdk
+   ```
+
+   **For Windows**:
+   Run the installer and follow the steps, ensuring that the JDK is added to the `PATH` environment variable during installation.
+
+   **For macOS**:
+   You can install Java 11 via Homebrew:
+   ```bash
+   brew install openjdk@11
+   ```
+
+3. **Verify Installation**:  
+   After installation, verify that Java 11 is installed correctly by running:
+   ```bash
+   java -version
+   ```
+   You should see an output like:
+   ```
+   openjdk version "11.0.x" 202x-xx-xx
+   ```
+
+---
+
+### **4. Installing the DX Toolkit**
+
+Now that you have Java installed (version 8 or 11), you can proceed with installing the DNAnexus CLI tools, which include `dxCompiler`.
+
+1. **Download the DX Toolkit**:
+   Go to the DNAnexus documentation page to download the toolkit suitable for your operating system:  
+   [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads)
+
+2. **Install the DX Toolkit**:
+   - **For Linux**:
+     ```bash
+     curl -O https://dnanexus.com/downloads/dx-toolkit.tar.gz
+     tar -xvzf dx-toolkit.tar.gz
+     cd dx-toolkit
+     sudo ./install
+     ```
+
+   - **For macOS**:
+     ```bash
+     curl -O https://dnanexus.com/downloads/dx-toolkit.tar.gz
+     tar -xvzf dx-toolkit.tar.gz
+     cd dx-toolkit
+     ./install
+     ```
+
+   - **For Windows**:
+     The installation process on Windows requires you to download the installer, unzip the file, and follow the installation steps included in the downloaded archive.
+
+3. **Login to DNAnexus**:
+   Once the installation is complete, log in to your DNAnexus account:
+   ```bash
+   dx login
+   ```
+
+4. **Verify Installation**:
+   Verify that the `dx` CLI is installed and accessible:
+   ```bash
+   dx --version
+   ```
+
+---
+
+### **Important Note on Java Versions for dxCompiler**
+
+- **Java 8 and 11 Only**:  
+  `dxCompiler` supports only Java version 8 and Java version 11. Using any other version of Java (e.g., Java 17 or newer) may lead to errors or unexpected behavior when compiling WDL workflows.
+
+---
 
 ## Compiling the WDL Workflow with `dxCompiler`
 
