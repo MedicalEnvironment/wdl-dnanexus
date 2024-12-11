@@ -80,12 +80,12 @@ To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a sp
 
 ---
 
-### **Installing the DX **
+### **Installing the DX Toolkit**
 
-Now that you have Java installed (version 8 or 11), you can proceed with installing the DNAnexus CLI tools, which include `dxCompiler`.
+Now that you have Java installed (version 8 or 11), you can proceed with installing the DNAnexus CLI tools, which include `dxCompiler` and `dx toolkit`.
 
 1. **Download the DX Toolkit**:
-   Go to the DNAnexus documentation page to download the toolkit suitable for your operating system:  
+   Go to the DNAnexus documentation page to check the detailed tutorial on the installation process:  
    [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads)
 
 2. **Install the DX Toolkit**:
@@ -109,10 +109,20 @@ Now that you have Java installed (version 8 or 11), you can proceed with install
    dx --version
    ```
 
+5. **Find Project ID**: List your DNAnexus projects:  
+   ```bash
+   dx find projects
+   ```
+   Example output:  
+   ```
+   ID              NAME
+   project-12345   FastQC_Project
+   ```
+
 ### **Installing the dxCompiler**
 To download the latest version, visit the following link: https://github.com/dnanexus/dxCompiler/releases
 
-To install dxCompiler via the CLI, run the following commands:
+To install dxCompiler via the CLI, run the following commands (current dxCompiler version for this tutorial is `2.11.9`):
 ```bash
 wget https://github.com/dnanexus/dxCompiler/releases/download/2.11.9/dxCompiler-2.11.9.jar
 cd /where/you/want/it; jar xf /path/to/jarfile.jar
@@ -180,37 +190,7 @@ The results will be stored in the DNAnexus folder `/FastQC_Results`.
 
 ---
 
-### **3. Installing the DX Toolkit**
-
-To compile WDL workflows, you need the DNAnexus CLI tools (`dx toolkit`).
-
-**Steps:**  
-1. **Download**: Download the toolkit for your OS: [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads).  
-2. **Install**: Follow your system's installation instructions.  
-   Example for Linux:
-   ```bash
-   curl -O https://dnanexus.com/downloads/dx-toolkit.tar.gz
-   tar -xvzf dx-toolkit.tar.gz
-   cd dx-toolkit
-   sudo ./install
-   ```
-3. **Login**: After installation, log in with your DNAnexus account:  
-   ```bash
-   dx login
-   ```
-4. **Find Project ID**: List your DNAnexus projects:  
-   ```bash
-   dx find projects
-   ```
-   Example output:  
-   ```
-   ID              NAME
-   project-12345   FastQC_Project
-   ```
-
----
-
-### **4. Compiling and Deploying the Workflow**
+### **3. Compiling and Deploying the Workflow**
 
 **Command Example:**  
 Run the `dxCompiler` command from your local machine or HPC terminal where `dxCompiler` is installed.
@@ -222,7 +202,10 @@ java -jar dxCompiler-2.11.7.jar compile fastqc_subworkflow.wdl \
 ```
 
 **Explanation of Flags:**
-- `--project project-12345`: The DNAnexus project where the compiled workflow will be saved.  
+- `--project project-12345`: The DNAnexus project where the compiled workflow will be saved. You can see your project ID by running the following command:
+```bash
+dx find projects  
+```
 - `--folder "/WDL_Compiled_Workflows"`: The folder path for storing the compiled workflow. Ensure it starts with `/`.  
 
 **Common Error:**  
@@ -230,7 +213,7 @@ If you see `[error] Folder path must start with "/"`, check the folder argument.
 
 ---
 
-### **5. Setting Input Files and Output Directory**
+### **4. Setting Input Files and Output Directory**
 
 **Input Configuration**:  
 Use the DNAnexus GUI to set up the inputs:  
@@ -262,7 +245,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **6. Monitoring Workflow Progress on DNAnexus**
+### **5. Monitoring Workflow Progress on DNAnexus**
 
 1. Go to the **Monitor** section within the DNAnexus interface (**As you may have already noticed, the number "1" has popped up, indicating that the workflow has been started**).
 
@@ -278,7 +261,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **7. Troubleshooting**
+### **6. Troubleshooting**
 
 **Compilation Errors**:  
 - **Syntax Errors**: Check your WDL file for syntax issues.  
