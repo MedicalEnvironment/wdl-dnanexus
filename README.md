@@ -257,7 +257,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 3. On the detailed process page, you can view real-time logs and periodic updates, such as the date and time of the process execution.
 
-   ![image](https://github.com/user-attachments/assets/6be696cc-f54a-4976-9a82-2f8d828abbc8)
+   ![image](https://github.com/user-attachments/assets/ad361c3b-6613-4376-8f59-0c330ff02190)
 
 
 ---
