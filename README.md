@@ -1,4 +1,4 @@
-![telegram-cloud-photo-size-2-5388907647274706830-y](https://github.com/user-attachments/assets/6be696cc-f54a-4976-9a82-2f8d828abbc8)<p align="center">
+<p align="center">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRebnHAXPaao5YNF58wnzLnc2jhY9YqsDLNx62BSnbj8JeZVwMiUG_DFU_v4SMcveoGxQ&usqp=CAU" alt="DNAnexus Platform Image" width="400" style="margin-right: 10px;">
   <img src="https://vsmalladi.github.io/openwdl.github.io//media/logo-preview.png" alt="OpenWDL Logo" width="300" style="margin-right: 10px;">
 </p>
@@ -257,7 +257,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 3. On the detailed process page, you can view real-time logs and periodic updates, such as the date and time of the process execution.
 
-   <img width="1060" alt="image" src="https://github.com/user-attachments/assets/e5e18126-28dd-48b7-add7-270b1ae85c10">
+   ![image](https://github.com/user-attachments/assets/6be696cc-f54a-4976-9a82-2f8d828abbc8)
 
 
 ---
