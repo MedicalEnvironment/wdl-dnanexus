@@ -7,7 +7,7 @@
 
 To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a specific version of Java (either version 8 or version 11). These Java versions are required as they are the only ones supported for running `dxCompiler`. 
 
-**Additionally, to explore the full potential of working with the DX toolkit, you can refer to this documentation ([Link](https://documentation.dnanexus.com/getting-started/cli-quickstart)) for guidance on utilizing its extensive command arsenal in various scenarios.**
+**Additionally, to explore the full potential of working with the DX toolkit, you can refer to this documentation ([Link](https://documentation.dnanexus.com/getting-started/cli-quickstart)) for guidance on utilizing its extensive command arsenal in various scenarios. However, for now, we will focus on using the GUI to avoid any confusion.**
 
 #### **Steps for Installing Java Version 8 or 11:**
 
