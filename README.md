@@ -146,36 +146,7 @@ This guide provides a complete, step-by-step walkthrough for compiling a WDL wor
 
 ---
 
-### **1. Purpose of the Dockerfile**
-
-**What is the purpose of the Dockerfile?**  
-The Dockerfile ensures that all necessary dependencies (e.g., FastQC and its required environment) are packaged into a portable, reproducible container. This container guarantees the workflow behaves consistently across different systems.
-
-**Why are we using it?**  
-By specifying a Docker image in your workflow, you ensure compatibility with the DNAnexus platform. In this case, the `biocontainers/fastqc:v0.11.9_cv8` Docker image includes all tools required to run the FastQC subworkflow.
-
-**Dockerfile Example:**
-```Dockerfile
-# Start with the FastQC image
-FROM biocontainers/fastqc:v0.11.9_cv8
-
-# Set the working directory
-WORKDIR /wdl-dnanexus
-
-# Copy the WDL workflow file
-COPY fastqc_subworkflow.wdl /wdl-dnanexus/
-
-CMD ["/bin/bash"]
-```
-
-This Dockerfile:  
-1. Pulls the pre-built `biocontainers/fastqc` image.  
-2. Sets a working directory (`/wdl-dnanexus`).  
-3. Copies the WDL workflow (`fastqc_subworkflow.wdl`) into the container.  
-
----
-
-### **2. Setup with Specific Examples**
+### **1. Setup with Specific Examples**
 
 **Input Files**:  
 Let’s assume your input directory contains two FASTQ files for analysis:  
@@ -192,7 +163,7 @@ The results will be stored in the DNAnexus folder `/FastQC_Results`.
 
 ---
 
-### **3. Compiling and Deploying the Workflow**
+### **2. Compiling and Deploying the Workflow**
 
 **Command Example:**  
 Run the `dxCompiler` command from your local machine or HPC terminal where `dxCompiler` is installed.
@@ -215,7 +186,7 @@ If you see `[error] Folder path must start with "/"`, check the folder argument.
 
 ---
 
-### **4. Setting Input Files and Output Directory**
+### **3. Setting Input Files and Output Directory**
 
 **Input Configuration**:  
 Use the DNAnexus GUI to set up the inputs:  
@@ -247,7 +218,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **5. Monitoring Workflow Progress on DNAnexus**
+### **4. Monitoring Workflow Progress on DNAnexus**
 
 1. Go to the **Monitor** section within the DNAnexus interface (**As you may have already noticed, the number "1" has popped up, indicating that the workflow has been started**).
 
@@ -264,7 +235,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **6. Troubleshooting**
+### **5. Troubleshooting**
 
 **Compilation Errors**:  
 - **Syntax Errors**: Check your WDL file for syntax issues.  
