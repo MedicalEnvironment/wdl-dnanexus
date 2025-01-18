@@ -9,9 +9,7 @@ To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a sp
 
 **Additionally, to explore the full potential of working with the DX toolkit, you can refer to this documentation ([Link](https://documentation.dnanexus.com/getting-started/cli-quickstart)) for guidance on utilizing its extensive command arsenal in various scenarios. However, for now, we will focus on using the GUI to avoid any confusion.**
 
-#### **Steps for Installing Java Version 8 or 11:**
-
-**Option 1: Install Java 8 (Recommended)**
+#### **Steps for Installing Java Version 8 (Recommended):**
 1. **Download Java 8**:  
    Download the Java 8 JDK from the official Oracle website or use an OpenJDK version.  
    [Oracle JDK 8 download](https://www.oracle.com/java/technologies/downloads/#java8) 
@@ -46,42 +44,6 @@ To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a sp
 
 ---
 
-**Option 2: Install Java 11** (if Java 8 is unavailable)
-
-1. **Download Java 11**:  
-   Java 11 can be downloaded from the official Oracle website or use an OpenJDK version.  
-   [Oracle JDK 11 download](https://www.oracle.com/java/technologies/downloads/#java11)  
-
-2. **Install Java 11**:  
-   Follow the installation instructions specific to your operating system:
-
-   **For Linux (Ubuntu/Debian)**:
-   ```bash
-   sudo apt update
-   sudo apt install openjdk-11-jdk
-   ```
-
-   **For Windows**:
-   Run the installer and follow the steps, ensuring that the JDK is added to the `PATH` environment variable during installation.
-
-   **For macOS**:
-   You can install Java 11 via Homebrew:
-   ```bash
-   brew install openjdk@11
-   ```
-
-3. **Verify Installation**:  
-   After installation, verify that Java 11 is installed correctly by running:
-   ```bash
-   java -version
-   ```
-   You should see an output like:
-   ```
-   openjdk version "11.0.x" 202x-xx-xx
-   ```
-
----
-
 ### **Installing the DX Toolkit**
 
 Now that you have Java installed (version 8 or 11), you can proceed with installing the DNAnexus CLI tools, which include `dxCompiler` and `dx toolkit`.
@@ -91,24 +53,20 @@ Now that you have Java installed (version 8 or 11), you can proceed with install
    [DNAnexus Toolkit Installation](https://documentation.dnanexus.com/downloads)
 
 2. **Install the DX Toolkit**:
-   - **For Unix Like**:
      ```bash
      pip3 install dxpy
      ```
 
-   - **For Windows**:
-     The installation process on Windows requires you to download the installer, unzip the file, and follow the installation steps included in the downloaded archive.
-
-3. **Login to DNAnexus**:
-   Once the installation is complete, log in to your DNAnexus account:
-   ```bash
-   dx login
-   ```
-
-4. **Verify Installation**:
+3. **Verify Installation**:
    Verify that the `dx` CLI is installed and accessible:
    ```bash
    dx --version
+   ```
+
+4. **Login to DNAnexus**:
+   Once the installation is complete, log in to your DNAnexus account:
+   ```bash
+   dx login
    ```
 
 5. **Find Project ID**: List your DNAnexus projects:  
@@ -130,6 +88,21 @@ wget https://github.com/dnanexus/dxCompiler/releases/download/2.11.9/dxCompiler-
 cd /where/you/want/it; jar xf /path/to/jarfile.jar
 ```
 
+Or by using the `curl` command:
+```bash
+curl -L -o dxCompiler-2.11.9.jar https://github.com/dnanexus/dxCompiler/releases/download/2.11.9/dxCompiler-2.11.9.jar
+```
+If wget or curl are unavailable, here’s what you can do:
+
+Install the Tool:
+Linux: Use `sudo apt-get install wget` or `sudo apt-get install curl`.
+
+MacOS: Use `brew install wget` or `brew install curl`.
+
+Use Alternatives:
+
+Web Browser: `Paste the URL into the browser and download manually`.
+
 ---
 
 ### **Important Note on Java Versions for dxCompiler**
@@ -149,9 +122,8 @@ This guide provides a complete, step-by-step walkthrough for compiling a WDL wor
 ### **1. Setup with Specific Examples**
 
 **Input Files**:  
-Let’s assume your input directory contains two FASTQ files for analysis:  
-- `sample1.fastq`  
-- `sample2.fastq`
+Let’s assume your input directory contains FASTQ files for analysis:  
+- `input_data`
 
 **Output Directory**:  
 The results will be stored in the DNAnexus folder `/FastQC_Results`.
@@ -159,11 +131,38 @@ The results will be stored in the DNAnexus folder `/FastQC_Results`.
 **How to upload input files**:  
 1. Log in to the DNAnexus GUI.  
 2. Navigate to your project.  
-3. Drag and drop the files into the `Input_Files` folder (or use the CLI: `dx upload sample1.fastq sample2.fastq --folder /Input_Files`).  
+3. Drag and drop the files into the `input_data` folder (or use the CLI: `dx upload input_data --recursive --folder /input_data`).  
 
 ---
 
 ### **2. Compiling and Deploying the Workflow**
+
+**Note:**
+Always validate WDL files before compiling to catch syntax or structural errors.
+
+To install `womtool` version 87 and validate a WDL file:
+
+1. **Download `womtool-87.jar`:**  
+   If `wget` is available:
+   ```bash
+   wget https://github.com/broadinstitute/cromwell/releases/download/87/womtool-87.jar
+   ```
+   If `curl` is available:
+   ```bash
+   curl -LO https://github.com/broadinstitute/cromwell/releases/download/87/womtool-87.jar
+   ```
+
+2. **Validate the WDL File:**  
+   Run the following command to validate your WDL file (e.g., `fastqc_subworkflow.wdl`):  
+   ```bash
+   java -jar womtool-87.jar validate fastqc_subworkflow.wdl
+   ```  
+
+3. **Ensure Java is Installed:**  
+   If the `java` command is unavailable, install Java:
+   - On Linux: `sudo apt install default-jre`
+   - On MacOS: `brew install java`
+   - On Windows: Download from [Oracle](https://www.oracle.com/java/technologies/javase-downloads.html). 
 
 **Command Example:**  
 Run the `dxCompiler` command from your local machine or HPC terminal where `dxCompiler` is installed.
