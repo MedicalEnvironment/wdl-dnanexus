@@ -234,7 +234,30 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **5. Troubleshooting**
+### **5. Running the Compiled Workflow via CLI**
+Assuming the user has created an **outputs** directory in `/WDL_Compiled_Workflows`, run the following command:  
+
+```bash
+dx run workflow-Gy4JkY047*** -f fastqc_subworkflow_inputs.json \
+    -y --watch --destination project-12345:/WDL_Compiled_Workflows/outputs/
+```
+
+**Explanation of Parameters:**
+- `dx run workflow-Gy4JkY047***` → Runs the compiled workflow.  
+- `-f fastqc_subworkflow_inputs.json` → Specifies the input file.  
+- `-y` → Automatically confirms the execution without asking for confirmation.  
+- `--watch` → Allows the user to monitor the job progress in real time.  
+- `--destination project-12345:/WDL_Compiled_Workflows/outputs/` → Saves outputs in the **specified DNAnexus project and directory**.  
+
+### **Expected Output Upon Successful Submission:**  
+```bash
+Analysis ID: analysis-Gy4QXxQ47***  
+```
+This confirms that the workflow execution has been successfully submitted to DNAnexus.
+
+---
+
+### **6. Troubleshooting**
 
 **Compilation Errors**:  
 - **Syntax Errors**: Check your WDL file for syntax issues.  
