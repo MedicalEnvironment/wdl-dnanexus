@@ -234,7 +234,7 @@ Use the DNAnexus GUI to set up the inputs:
 
 ---
 
-### **Alternatively** **5. Running the Compiled Workflow via CLI**
+### **(Alternatively)** **5. Running the Compiled Workflow via CLI**
 Assuming the user has created an **outputs** directory in `/WDL_Compiled_Workflows`, run the following command:  
 
 ```bash
