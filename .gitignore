@@ -1,0 +1,64 @@
+# Nextflow working directories
+work/
+.nextflow/
+.nextflow.log*
+
+# Nextflow cache
+.nextflow.log
+.nextflow.history
+
+# Results and outputs
+results/
+test_results/
+output/
+outputs/
+
+# DNAnexus credentials
+.dnanexus_config/
+git-credentials.json
+
+# Pipeline execution reports
+*.html
+*.svg
+trace.txt
+timeline.html
+report.html
+dag.svg
+
+# Test data
+test_data/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

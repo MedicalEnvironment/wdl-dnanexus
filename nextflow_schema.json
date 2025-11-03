@@ -1,0 +1,81 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/fastqc-pipeline/master/nextflow_schema.json",
+    "title": "FastQC Pipeline Parameters",
+    "description": "Quality control analysis of FASTQ files using FastQC",
+    "type": "object",
+    "definitions": {
+        "input_output_options": {
+            "title": "Input/Output Options",
+            "type": "object",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": [
+                "fastq_files"
+            ],
+            "properties": {
+                "fastq_files": {
+                    "type": "string",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.f(ast)?q(\\.gz)?$",
+                    "description": "Path or glob pattern to input FASTQ files",
+                    "help_text": "Use this to specify the location of your input FASTQ files. For example: '*.fastq.gz' or '/path/to/data/*.fq'",
+                    "fa_icon": "fas fa-file-medical"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where results will be saved",
+                    "default": "./results",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "publish_mode": {
+                    "type": "string",
+                    "default": "copy",
+                    "description": "Method to publish output files",
+                    "enum": [
+                        "symlink",
+                        "copy",
+                        "move"
+                    ],
+                    "help_text": "Choose how files are published to the output directory"
+                }
+            }
+        },
+        "resource_options": {
+            "title": "Resource Options",
+            "type": "object",
+            "description": "Configure computational resource requirements",
+            "properties": {
+                "max_cpus": {
+                    "type": "integer",
+                    "description": "Maximum number of CPUs per process",
+                    "default": 4,
+                    "minimum": 1,
+                    "fa_icon": "fas fa-microchip"
+                },
+                "max_memory": {
+                    "type": "string",
+                    "description": "Maximum memory per process",
+                    "default": "8.GB",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(K|M|G|T)?B$",
+                    "fa_icon": "fas fa-memory"
+                },
+                "max_time": {
+                    "type": "string",
+                    "description": "Maximum time per process",
+                    "default": "4.h",
+                    "pattern": "^\\d+(\\.\\d+)?\\.?\\s*(s|m|h|d)?$",
+                    "fa_icon": "far fa-clock"
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/resource_options"
+        }
+    ]
+}
