@@ -1,8 +1,8 @@
 # FastQC Pipeline - Nextflow Deployment Guide for DNAnexus
 
 <p align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRebnHAXPaao5YNF58wnzLnc2jhY9YqsDLNx62BSnbj8JeZVwMiUG_DFU_v4SMcveoGxQ&usqp=CAU" alt="DNAnexus Platform Image" width="400" style="margin-right: 10px;">
-  <img src="https://repository-images.githubusercontent.com/9052236/ecd9481e-f4b3-4324-b832-a08ee1d99564" alt="Nextflow Logo" width="400">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRebnHAXPaao5YNF58wnzLnc2jhY9YqsDLNx62BSnbj8JeZVwMiUG_DFU_v4SMcveoGxQ&usqp=CAU" alt="DNAnexus Platform Image" height="80" style="margin-right: 20px;">
+  <img src="https://www.nextflow.io/img/nextflow-logo-bg-light.png" alt="Nextflow Logo" height="80">
 </p>
 
 ## Overview
