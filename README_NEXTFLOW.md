@@ -5,7 +5,7 @@ Nextflow pipeline for running FastQC quality control on FASTQ files. Converted f
 ## Files Used
 
 ```
-wdl-dnanexus/
+fastqc-dnanexus/
 ├── main.nf              # Main pipeline script
 ├── nextflow.config      # Configuration with docker profile
 └── nextflow_schema.json # Parameter schema for DNAnexus UI
