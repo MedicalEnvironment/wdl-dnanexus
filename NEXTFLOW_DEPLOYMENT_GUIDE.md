@@ -134,21 +134,9 @@ dx ls
 Now build from your **local directory** and deploy **to DNAnexus**:
 
 ```bash
-# Build from current local directory (.) and upload to DNAnexus
 dx build --nextflow . \
-  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex/fastqc-pipeline
-```
-
-**Alternative with explicit local path:**
-
-```bash
-# Linux/Mac:
-dx build --nextflow ~/dxcompiler \
-  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex/fastqc-pipeline
-
-# Windows (PowerShell):
-dx build --nextflow C:\Users\Asus\fastqc-dnanexus \
-  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex/fastqc-pipeline
+  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex \
+  --overwrite
 ```
 
 **Expected Output:**
@@ -159,14 +147,15 @@ Created Nextflow pipeline applet-zzzz
 
 **Explanation:**
 - `.` - Current directory containing pipeline files
-- `--destination` - Where to store the applet on DNAnexus
-- The applet will be named based on the folder structure
+- `--destination` - Where to store the applet on DNAnexus (format: `project-ID:/path`)
+- `--overwrite` - Replace existing applet with the same name
 
 #### Alternative: Specify Custom Name
 
 ```bash
 dx build --nextflow /path/to/fastqc-dnanexus \
-  --destination project-xxxxx:/Nextflow_Pipelines/fastqc-pipeline-v1.0
+  --destination project-xxxxx:/Nextflow_Pipelines/fastqc-pipeline-v1.0 \
+  --overwrite
 ```
 
 ---
@@ -243,28 +232,38 @@ dx upload input_data/ --recursive --destination /input_data/
 **Basic Execution:**
 
 ```bash
-dx run project-xxxxx:/Nextflow_Pipelines/fastqc-pipeline \
-  --nextflow-pipeline-params '{"fastq_files": "dx://project-xxxxx:/input_data/*.fastq.gz"}' \
-  --destination project-xxxxx:/output_data/fastqc_results/ \
+dx run project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex \
+  -inextflow_run_opts='-profile docker --fastq_files "dx://project-Gfb3PGj46zGzp14Y3gPZZfBb:/DATA/INPUT/RNA-seq/R1/sod1_R1_001.fastq.gz" --outdir nextflow-output' \
+  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-output/ \
   -y
 ```
 
-**With Additional Parameters:**
+**With Multiple FASTQ Files (Pattern Matching):**
 
 ```bash
-dx run project-xxxxx:/Nextflow_Pipelines/fastqc-pipeline \
-  -inextflow_params_file=params.json \
-  -idebug=true \
-  -ipreserve_cache=true \
-  --destination project-xxxxx:/output_data/fastqc_results/ \
+dx run project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex \
+  -inextflow_run_opts='-profile docker --fastq_files "dx://project-Gfb3PGj46zGzp14Y3gPZZfBb:/DATA/INPUT/RNA-seq/R1/*.fastq.gz" --outdir nextflow-output' \
+  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-output/ \
+  -y
+```
+
+**With Job Monitoring:**
+
+```bash
+dx run project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex \
+  -inextflow_run_opts='-profile docker --fastq_files "dx://project-Gfb3PGj46zGzp14Y3gPZZfBb:/DATA/INPUT/RNA-seq/R1/sod1_R1_001.fastq.gz" --outdir nextflow-output' \
+  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-output/ \
   -y --watch
 ```
 
 **Parameter Flags Explained:**
+- `-inextflow_run_opts` - Nextflow command-line options and parameters
+- `-profile docker` - Use Docker profile defined in nextflow.config
+- `--fastq_files` - Input FASTQ file(s) with DNAnexus path (use dx:// prefix)
+- `--outdir` - Output directory name
+- `--destination` - Where to store output files on DNAnexus
 - `-y` - Auto-confirm execution
 - `--watch` - Monitor job progress in real-time
-- `-idebug=true` - Enable debug logging
-- `-ipreserve_cache=true` - Save cache for future resume capability
 
 #### Step 4: Monitor Job Progress
 
@@ -402,20 +401,16 @@ dx watch job-1111
 
 ### Common Issues
 
-#### Issue 1: "Cannot find any FASTQ files"
-
 **Cause:** File path pattern doesn't match any files
 
 **Solution:**
 ```bash
 # Verify files exist
-dx ls /input_data/
+dx ls /DATA/INPUT/RNA-seq/R1/
 
-# Use correct pattern
-"dx://project-xxxxx:/input_data/*.fastq.gz"
+# Use correct DNAnexus path format with dx:// prefix
+"dx://project-Gfb3PGj46zGzp14Y3gPZZfBb:/DATA/INPUT/RNA-seq/R1/*.fastq.gz"
 ```
-
-#### Issue 2: "Container not found"
 
 **Cause:** Docker image not accessible
 
@@ -426,13 +421,14 @@ docker pull akbarabayev/my-fastqc-dnanexus-image:latest
 
 Or update `nextflow.config` with a different image.
 
-#### Issue 3: Job Timeout
-
 **Cause:** Process exceeds time limit
 
-**Solution:** Increase time limit in parameters:
+**Solution:** Increase time limit in nextflow_run_opts:
 ```bash
-dx run ... -inextflow_run_opts="-process.time='8h'"
+dx run project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex \
+  -inextflow_run_opts='-profile docker --fastq_files "dx://..." --outdir results --max_time 8.h' \
+  --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/output/ \
+  -y
 ```
 
 ---
@@ -538,6 +534,7 @@ Typical costs for FastQC pipeline (estimates only):
 | **Resume Capability** | Limited | Full resume support |
 | **Execution Reports** | Basic | Comprehensive (timeline, DAG, trace) |
 | **Learning Curve** | Moderate | Moderate |
+| **Run Parameters** | Complex JSON inputs | `-inextflow_run_opts` with CLI flags |
 
 ---
 
