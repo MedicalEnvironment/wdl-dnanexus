@@ -85,7 +85,7 @@ Your project must have the **billTo** feature enabled for Nextflow pipeline buil
 
 **Important:** There are two different types of paths:
 
-1. **Local paths** - Files on your computer (e.g., `~/dxcompiler/`, `C:\Users\Asus\wdl-dnanexus\`)
+1. **Local paths** - Files on your computer (e.g., `~/dxcompiler/`, `C:\Users\Asus\fastqc-dnanexus\`)
 2. **DNAnexus paths** - Folders on the platform (e.g., `/nextflow-dnanex/`, `/DATA/`)
 
 When you run `dx build --nextflow`, you specify:
@@ -106,7 +106,7 @@ First, ensure you have the Nextflow files on your **local computer**:
 
 ```bash
 # On Windows (PowerShell):
-cd C:\Users\Asus\wdl-dnanexus
+cd C:\Users\Asus\fastqc-dnanexus
 dir
 # Should show: main.nf, nextflow.config, nextflow_schema.json
 
@@ -147,7 +147,7 @@ dx build --nextflow ~/dxcompiler \
   --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex/fastqc-pipeline
 
 # Windows (PowerShell):
-dx build --nextflow C:\Users\Asus\wdl-dnanexus \
+dx build --nextflow C:\Users\Asus\fastqc-dnanexus \
   --destination project-Gfb3PGj46zGzp14Y3gPZZfBb:/nextflow-dnanex/fastqc-pipeline
 ```
 
@@ -165,7 +165,7 @@ Created Nextflow pipeline applet-zzzz
 #### Alternative: Specify Custom Name
 
 ```bash
-dx build --nextflow /path/to/wdl-dnanexus \
+dx build --nextflow /path/to/fastqc-dnanexus \
   --destination project-xxxxx:/Nextflow_Pipelines/fastqc-pipeline-v1.0
 ```
 
