@@ -3,6 +3,14 @@
   <img src="https://vsmalladi.github.io/openwdl.github.io//media/logo-preview.png" alt="OpenWDL Logo" width="300" style="margin-right: 10px;">
 </p>
 
+# WDL Workflow Deployment Guide
+
+This repository contains both **WDL** and **Nextflow** implementations for deploying FastQC workflows to DNAnexus.
+
+> **Note:** For Nextflow deployment instructions, see [README_NEXTFLOW.md](README_NEXTFLOW.md)
+
+---
+
 ### **Installing the DX Toolkit and Java (Required for dxCompiler)**
 
 To compile WDL workflows, you need the DNAnexus CLI tools (`dxToolkit`) and a specific version of Java (either version 8 or version 11). These Java versions are required as they are the only ones supported for running `dxCompiler`. 
